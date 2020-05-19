@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.TreatmentDao">
+    <update id="updateTreatment">
+        update lcw_treatment
+        <set>
+        <if test="treatment.further_visit!=null">further_visit=#{treatment.further_visit},</if>
+        <if test="treatment.in_hospital!=null">in_hospital=#{treatment.in_hospital},</if>
+        <if test="treatment.symptom!=null">symptom=#{treatment.symptom},</if>
+        <if test="treatment.doctors_advice!=null">doctors_advice=#{treatment.doctors_advice},</if>
+        </set>
+    </update>
+    <select id="selectByIdentity" resultType="com.example.demo.pojo.File">
+        select * from lcw_file where identity = #{identity} limit 1;
+    </select>
+    <select id="project_counts" resultType="com.example.demo.pojo.Treatment">
+        select * from lcw_project where 1=1;
+    </select>
+    <select id="selectAll" resultType="java.lang.Integer">
+        select count(*) from lcw_treatment t left join lcw_file f on f.identity=t.identity
+
+        <if test="searchVal!= '' and searchVal!=null ">
+            AND (
+            f.name like CONCAT('%',#{searchVal},'%')
+            or f.identity like CONCAT('%',#{searchVal},'%')
+            )
+        </if>
+        <if test="type==0 ">
+            where in_hospital = #{type}
+        </if>
+        <if test="identity!='' and identity!=null ">
+            where t.identity = #{identity}
+        </if>
+    </select>
+    <select id="selectByPage" resultType="com.example.demo.pojo.Treatment">
+        select f.name,f.sex,f.identity,f.medicalnumber,f.phone,t.create_time,t.creator_id,
+                t.symptom,t.doctors_advice,t.in_hospital,t.further_visit,lcw_user.realname
+        from lcw_treatment t
+        left join lcw_file f on f.identity=t.identity
+        left join lcw_user on lcw_user.id = t.creator_id
+
+        <if test="searchVal!= '' and searchVal!=null ">
+            AND (
+            f.name like CONCAT('%',#{searchVal},'%')
+            or f.identity like CONCAT('%',#{searchVal},'%')
+            )
+        </if>
+        <if test="type==0 ">
+            where in_hospital = #{type}
+        </if>
+        <if test="check== 0 ">
+            and further_visit = #{check}
+        </if>
+        <if test="identity!='' and identity!=null ">
+            where t.identity = #{identity}
+        </if>
+        ORDER BY t.id limit #{i}, #{limit};
+    </select>
+    <select id="selectByIn_hospital" resultType="java.lang.Integer">
+        select count(*) from lcw_treatment where in_hospital = 0;
+    </select>
+    <select id="selectByIncheck" resultType="java.lang.Integer">
+        select count(*) from lcw_treatment where further_visit = 0;
+    </select>
+    <select id="preHistory" resultType="com.example.demo.pojo.File">
+        select * from lcw_file  where identity=#{identity} limit 1;
+    </select>
+    <select id="prerecored" resultType="com.example.demo.pojo.Treatment">
+        select f.name,f.sex,f.identity,f.medicalnumber,f.phone,t.create_time,t.creator_id,
+                t.symptom,t.doctors_advice,t.in_hospital,t.further_visit,lcw_user.realname
+        from lcw_treatment t
+        left join lcw_file f on f.identity=t.identity
+        left join lcw_user on lcw_user.id = t.creator_id
+        where t.identity=#{identity}
+        ORDER BY t.id limit #{i}, #{limit};
+    </select>
+    <select id="selectAllByIdentity" resultType="java.lang.Integer">
+        select count(*) from lcw_treatment where identity=#{identity};
+    </select>
+</mapper>

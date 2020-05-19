@@ -1,0 +1,44 @@
+spring:
+  profiles:
+    active: dev
+  devtools:
+    restart:
+      enabled: true  #设置开启热部署
+
+  thymeleaf:
+    prefix:
+      classpath: /templates   # 访问template下的html文件需要配置模板，映射
+    cache: false # 开发时关闭缓存,不然没法看到实时页面
+
+  #配置数据源
+  datasource:
+    url: jdbc:mysql://39.106.217.100:3306/healthy
+    username: healthy
+    password: Lcw1.23.
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 300
+    minIdle: 100
+    maxActive: 1000
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    #exceptionSorter: true
+    testOnReturn: false
+    poolPreparedStatements: true
+    #filter: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+    useGlobalDataSourceStat: true
+
+mybatis:
+  typeAliasesPackage: com.example.demo.dao
+  mapperLocations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+server:
+  port: 9999

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+	<meta charset="utf-8">
+	<title>修改密码--layui后台管理模板</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="/css/user.css" media="all" />
+</head>
+<body class="childrenBody">
+	<form class="layui-form changePwd">
+		<div style="margin:0 0 15px 110px;color:#f00;"></div>
+		<div class="layui-form-item">
+		    <label class="layui-form-label">用户名</label>
+			<div class="layui-input-block">
+				<input type="text" value="" disabled name="username" lay-verify="required|oldPwd" class="layui-input username">
+			</div>
+			<span class="layui-form-label" style="display: none" id="_username"><span shiro:principal property="username" /></span>
+		</div>
+		<div class="layui-form-item">
+		    <label class="layui-form-label">旧密码</label>
+		    <div class="layui-input-block">
+		    	<input type="password" value="" placeholder="请输入旧密码" name="oldpwd" lay-verify="required|oldPwd" class="layui-input pwd">
+		    </div>
+		</div>
+		<div class="layui-form-item">
+		    <label class="layui-form-label">新密码</label>
+		    <div class="layui-input-block">
+		    	<input type="password" value="" placeholder="请输入新密码" name="newpwd" lay-verify="required|newPwd" id="oldPwd" class="layui-input pwd">
+		    </div>
+		</div>
+		<div class="layui-form-item">
+		    <label class="layui-form-label">确认密码</label>
+		    <div class="layui-input-block">
+		    	<input type="password" value="" placeholder="请确认密码" name="qnewpwd" lay-verify="required|confirmPwd" class="layui-input pwd">
+		    </div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">手机号码</label>
+			<div class="layui-input-block">
+				<input class="layui-input" name="phone" placeholder="手机号码" id="phone" lay-verify="required|phone" type="text" autocomplete="off">
+			</div>
+		</div>
+		<div class="layui-form-item form_code">
+			<label class="layui-form-label">验证码</label>
+			<div class="layui-input-block">
+				<input type="text" value="" placeholder="请输入验证码"  name="code" style="vertical-align:middle;width:50%"  class="layui-input code">
+				<div class="code"><input type="button" class="layui-btn layui-btn-primary" value="获取验证码" id="sendBtn_L" width="110" style="width: 150px;float: right;background-color: #009688;border-color: #009688 !important;margin-top: -38px;" >
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+		    <div class="layui-input-block">
+		    	<button class="layui-btn" lay-submit="" lay-filter="changePwd">立即修改</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+		    </div>
+		</div>
+	</form>
+	<script type="text/javascript" src="/layui/layui.js"></script>
+	<script type="text/javascript" src="/js/user/address.js"></script>
+	<script type="text/javascript" src="/js/user/user.js"></script>
+</body>
+</html>

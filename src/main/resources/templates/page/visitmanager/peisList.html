@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>体检记录</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all" />
+    <link rel="stylesheet" href="../../css/news.css" media="all" />
+    <style type="text/css">
+        .layui-table-cell {
+            height: auto;
+            line-height: 28px;
+        }
+    </style>
+</head>
+<body class="childrenBody">
+<blockquote class="layui-elem-quote news_search">
+    <div class="layui-inline">
+        <div class="layui-input-inline">
+            <input type="text" value="" placeholder="请输入关键字" class="layui-input search_input" id="search_input">
+        </div>
+        <a class="layui-btn search_btn" data-type="reload" id="search_btn">查询</a>
+    </div>
+    <div class="layui-inline" style="float: right">
+        <a class="layui-btn search_btn" data-type="reload" onclick="adduser()">新建</a>
+        <a class="layui-btn search_btn" data-type="reload" id="export">导入</a>
+    </div>
+</blockquote>
+<div class="layui-form links_list">
+    <table id="test"  class="layui-hide" lay-filter="demo">
+
+    </table>
+</div>
+
+<div id="page"></div>
+
+<form class="layui-form" action="" id="detail" lay-filter="example" style="display: none;width:450px;margin-left: 50px;margin-top: 5px" >
+    <div class="layui-inline" style="margin-top: 10px">
+        <label class="layui-form-label">*&nbsp;身高</label>
+        <div class="layui-input-inline">
+            <input type="text" name="height" id="height" lay-verify="required" style="width: 270px" autocomplete="off" placeholder="请输入身高(单位厘米)" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-inline" style="margin-top: 10px">
+        <label class="layui-form-label">*&nbsp;体重</label>
+        <div class="layui-input-inline">
+            <input type="text" name="weight" id="weight" lay-verify="required" autocomplete="off" placeholder="请输入体重(单位千克)" style="width: 270px" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-inline" style="margin-top: 10px">
+        <label class="layui-form-label">*&nbsp;左眼视力</label>
+        <div class="layui-input-inline">
+            <input type="text" name="left_eye" id="left_eye" lay-verify="required" autocomplete="off" placeholder="请输入左眼视力" style="width: 270px" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-inline" style="margin-top: 10px">
+        <label class="layui-form-label">*&nbsp;右眼视力</label>
+        <div class="layui-input-inline">
+            <input type="text" name="right_eye" id="right_eye" lay-verify="required" autocomplete="off" placeholder="请输入右眼视力" style="width: 270px" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" style="margin-top: 10px">
+        <label class="layui-form-label">心脏功能:</label>
+        <div class="layui-inline" style="margin-left: -30px;">
+            <label class="layui-form-label">*&nbsp;心率</label>
+            <div class="layui-input-inline">
+                <input type="text" name="heart" id="heart" lay-verify="required" autocomplete="off" placeholder="单位（次/分钟）" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-inline" style="margin-left: 80px;">
+            <div class="layui-input-inline" style="width: 550px">
+                <label class="layui-form-label">*&nbsp;杂音</label>
+                <input type="radio" name="m_voice" value="0" title="无" checked="">
+                <input type="radio" name="m_voice" value="1" title="有">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="layui-form-item" style="margin-top: 10px">
+        <label class="layui-form-label">肺功能:</label>
+        <div class="layui-inline" style="margin-left: -30px;">
+            <label class="layui-form-label">*&nbsp;桶状胸</label>
+            <input type="radio" name="tong_a" value="0" title="否" checked="">
+            <input type="radio" name="tong_a" value="1" title="是">
+        </div>
+
+        <div class="layui-inline" style="margin-left: 80px;">
+            <label class="layui-form-label">*&nbsp;呼吸音</label>
+            <input type="radio" name="voice_a" value="1" title="正常" checked="">
+            <input type="radio" name="voice_a" value="0" title="异常">
+        </div>
+
+        <div class="layui-inline" style="margin-left: 80px;">
+            <label class="layui-form-label">*&nbsp;罗音</label>
+            <input type="radio" name="voice_b" value="0" title="无" checked="">
+            <input type="radio" name="voice_b" value="1" title="干罗音">
+            <input type="radio" name="voice_b" value="2" title="湿罗音">
+            <input type="radio" name="voice_b" value="3" title="其它">
+        </div>
+    </div>
+
+    <div class="layui-form-item" style="margin-top: 10px">
+        <label class="layui-form-label">*&nbsp;体检结果</label>
+        <div class="layui-input-inline">
+            <input type="text" name="result" lay-verify="required" style="width: 270px" id="result" autocomplete="off" placeholder="请输入体检结果" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="userSubmit">保存</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" src="/layui/layui.js"></script>
+<script type="text/javascript" src="/js/visitmanager/peisList.js"></script>
+<!-- 操作按钮 -->
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="detail">查看详情</a>
+</script>
+<script type="text/html" id="toolbar0">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="reload">刷新</button>
+        <button class="layui-btn layui-btn-sm" lay-event="delAll">删除</button>
+    </div>
+</script>
+
+
+</body>
+</html>

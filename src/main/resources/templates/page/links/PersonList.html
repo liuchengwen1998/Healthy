@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>信息列表</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all" />
+    <link rel="stylesheet" href="../../css/news.css" media="all" />
+    <style type="text/css">
+        .layui-table-cell {
+            height: auto;
+            line-height: 28px;
+        }
+    </style>
+</head>
+<body class="childrenBody">
+<blockquote class="layui-elem-quote news_search">
+    <div class="layui-inline">
+        <div class="layui-input-inline">
+            <input type="text" value="" placeholder="请输入关键字" class="layui-input search_input" id="search_input">
+        </div>
+        <a class="layui-btn search_btn" data-type="reload" id="search_btn">查询</a>
+    </div>
+</blockquote>
+<div class="layui-form links_list">
+    <table id="test"  class="layui-hide" lay-filter="demo">
+
+    </table>
+</div>
+<div id="page"></div>
+<script type="text/javascript" src="/layui/layui.js"></script>
+<script type="text/javascript" src="/js/links/linksList.js"></script>
+<!-- 操作按钮 -->
+<script type="text/html" id="barDemo">
+    {{#  if(d.status == 1){ }}
+    <a class="layui-btn layui-btn-xs" lay-event="status">启用</a>
+    {{#  }else{ }}
+    <a class="layui-btn layui-btn-xs" lay-event="status">禁用</a>
+    {{#  } }}
+    <a class="layui-btn layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script type="text/html" id="toolbar0">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="reload">刷新</button>
+        <button class="layui-btn layui-btn-sm" lay-event="delAll">删除</button>
+    </div>
+</script>
+
+
+</body>
+</html>

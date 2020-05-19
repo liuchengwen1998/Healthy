@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:shiro="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all" />
+    <link rel="stylesheet" href="../../css/news.css" media="all" />
+    <style type="text/css">
+        .layui-table-cell {
+            height: auto;
+            line-height: 28px;
+        }
+    </style>
+</head>
+<body class="childrenBody">
+<blockquote class="layui-elem-quote news_search">
+    <div class="layui-inline">
+        <div class="layui-input-inline">
+            <input type="text" value="" placeholder="请输入关键字" class="layui-input search_input" id="search_input">
+        </div>
+        <a class="layui-btn search_btn" data-type="reload" id="search_btn">查询</a>
+    </div>
+</blockquote>
+<div class="layui-form links_list">
+    <table id="test" class="layui-hide" lay-filter="demo">
+
+    </table>
+</div>
+
+<form class="layui-form" action="" id="check" lay-filter="example" style="display: none;width:450px;margin-left: 50px;margin-top: 5px" >
+    <div class="layui-form-item">
+        <input id="id" type="hidden" name="id"/>
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" id="name" value="" lay-verify="required" autocomplete="off"  class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">身份证号</label>
+        <div class="layui-input-block">
+            <input type="text" name="identity" id="identity" value=""  lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">复诊</label>
+        <div class="layui-input-block">
+            <input type="radio" name="further_visit" value="0" title="需要" checked="">
+            <input type="radio" name="further_visit" value="1" title="不需要">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">住院</label>
+        <div class="layui-input-block">
+            <input type="radio" name="in_hospital" value="0" title="需要" checked="">
+            <input type="radio" name="in_hospital" value="1" title="不需要" >
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">主要症状</label>
+        <div class="layui-input-block">
+            <input  name="symptom" id="symptom" value="" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">医嘱</label>
+        <div class="layui-input-block">
+            <input  id="doctors_advice" name="doctors_advice"  value="" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+<!--    <div class="layui-form-item">-->
+<!--        <div class="layui-input-block">-->
+<!--            <button class="layui-btn" lay-submit="" lay-filter="drugSubmit">立即提交</button>-->
+<!--            <button type="reset" class="layui-btn layui-btn-primary">重置</button>-->
+<!--        </div>-->
+<!--    </div>-->
+
+</form>
+
+<script type="text/javascript" src="/layui/layui.js"></script>
+<script type="text/javascript" src="/js/archive/visitList.js"></script>
+<!-- 操作按钮 -->
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="check">查看详情</a>
+</script>
+<script type="text/html" id="toolbar0">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="reload">刷新</button>
+        <button class="layui-btn layui-btn-sm" lay-event="delAll">删除</button>
+    </div>
+</script>
+
+</body>
+</html>

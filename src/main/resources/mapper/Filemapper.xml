@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.FileDao">
+
+    <insert id="addFile">
+        insert into lcw_file
+        <set>
+            <if test="file.name != null">`name`=#{file.name},</if>
+            <if test="file.sex != null">`sex`=#{file.sex},</if>
+            <if test="file.age != null">`age`=#{file.age},</if>
+            <if test="file.birth != null">`birth`=#{file.birth},</if>
+            <if test="file.identity != null">`identity`=#{file.identity},</if>
+            <if test="file.nation != null">`nation`=#{file.nation},</if>
+            <if test="file.phone != null">`phone`=#{file.phone},</if>
+            <if test="file.email != null">`email`=#{file.email},</if>
+            <if test="file.province != null">`province`=#{file.province},</if>
+            <if test="file.city != null">`city`=#{file.city},</if>
+            <if test="file.area != null">`area`=#{file.area},</if>
+            <if test="file.work != null">`work`=#{file.work},</if>
+            <if test="file.edu != null">`edu`=#{file.edu},</if>
+            <if test="file.profession != null">`profession`=#{file.profession},</if>
+            <if test="file.marital != null">`marital`=#{file.marital},</if>
+            <if test="file.medicalnumber != null">`medicalnumber`=#{file.medicalnumber},</if>
+            <if test="file.pre_history != null">`pre_history`=#{file.pre_history},</if>
+            <if test="file.drug_history != null">`drug_history`=#{file.drug_history},</if>
+            <if test="file.family_history != null">`family_history`=#{file.family_history},</if>
+            <if test="file.bloodtype != null">`bloodtype`=#{file.bloodtype},</if>
+            <if test="file.RHbloodtype != null">`RHbloodtype`=#{file.RHbloodtype},</if>
+            <if test="file.paymed != null">`paymed`=#{file.paymed},</if>
+            <if test="file.description != null">`description`=#{file.description},</if>
+
+        </set>
+    </insert>
+    <update id="editfile">
+        update lcw_file
+        <set>
+            <if test="file.name != null">`name`=#{file.name},</if>
+            <if test="file.sex != null">`sex`=#{file.sex},</if>
+            <if test="file.age != null">`age`=#{file.age},</if>
+            <if test="file.birth != null">`birth`=#{file.birth},</if>
+            <if test="file.identity != null">`identity`=#{file.identity},</if>
+            <if test="file.nation != null">`nation`=#{file.nation},</if>
+            <if test="file.phone != null">`phone`=#{file.phone},</if>
+            <if test="file.email != null">`email`=#{file.email},</if>
+            <if test="file.province != null">`province`=#{file.province},</if>
+            <if test="file.city != null">`city`=#{file.city},</if>
+            <if test="file.area != null">`area`=#{file.area},</if>
+            <if test="file.work != null">`work`=#{file.work},</if>
+            <if test="file.edu != null">`edu`=#{file.edu},</if>
+            <if test="file.profession != null">`profession`=#{file.profession},</if>
+            <if test="file.marital != null">`marital`=#{file.marital},</if>
+            <if test="file.medicalnumber != null">`medicalnumber`=#{file.medicalnumber},</if>
+            <if test="file.pre_history != null">`pre_history`=#{file.pre_history},</if>
+            <if test="file.drug_history != null">`drug_history`=#{file.drug_history},</if>
+            <if test="file.family_history != null">`family_history`=#{file.family_history},</if>
+            <if test="file.bloodtype != null">`bloodtype`=#{file.bloodtype},</if>
+            <if test="file.RHbloodtype != null">`RHbloodtype`=#{file.RHbloodtype},</if>
+            <if test="file.paymed != null">`paymed`=#{file.paymed},</if>
+            <if test="file.description != null">`description`=#{file.description},</if>
+        </set>
+        where id = #{file.id}
+    </update>
+    <select id="checkIdentity" resultType="com.example.demo.pojo.File">
+        select * from lcw_file where identity =#{identity} limit 1;
+    </select>
+    <select id="checkPhone" resultType="com.example.demo.pojo.File">
+        select * from lcw_file where phone =#{phone} limit 1;
+    </select>
+    <select id="checkidentity" resultType="com.example.demo.pojo.File">
+        select * from lcw_file where identity =#{identity} limit 1;
+    </select>
+</mapper>

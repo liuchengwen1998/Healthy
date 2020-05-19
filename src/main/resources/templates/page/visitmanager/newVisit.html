@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>建立病例</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all" />
+    <link rel="stylesheet" href="../../css/news.css" media="all" />
+</head>
+<body>
+<blockquote class="layui-elem-quote">
+    <div class="layui-inline">
+        <div class="layui-input-inline" style="font-size: 24px;margin-left: 20px">
+            建&nbsp;立&nbsp;病&nbsp;例
+        </div>
+
+    </div>
+    <div class="layui-inline" style="float: right">
+        <div  style="font-size: 18px;margin-right: 20px">操作者：<span id="creator"><span shiro:principal property="realname"/></span></div>
+    </div>
+</blockquote>
+<form class="layui-form" action="">
+<div class="layui-form-item">
+    <div class="layui-inline">
+        <label class="layui-form-label">*&nbsp;姓名</label>
+        <div class="layui-input-inline">
+            <input type="text" style="width: 360px" name="name" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入名字" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline" style="margin-left: 200px">
+        <label class="layui-form-label">*&nbsp;身份证号码</label>
+        <div class="layui-input-inline">
+            <input type="text" name="identity" style="width: 360px" lay-verify="identity" lay-reqtext="身份证号码不为空" placeholder="请输入身份证号码" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <div class="layui-inline">
+        <label class="layui-form-label">*&nbsp;年龄</label>
+        <div class="layui-input-inline">
+            <input type="text" name="age" style="width: 360px" lay-verify="required|number" lay-reqtext="年龄不能为空" placeholder="请输入年龄" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline" style="margin-left: 200px">
+        <label class="layui-form-label">*&nbsp;性别</label>
+        <div class="layui-input-inline">
+            <select name="sex" lay-filter="sex" lay-verify="required" id="sex">
+                <option value="">请选择性别</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <div class="layui-inline">
+        <label class="layui-form-label">*&nbsp;医保卡号</label>
+        <div class="layui-input-inline">
+            <input type="text" name="medicalnumber" style="width: 360px" lay-verify="required"  placeholder="请输入医保卡号（没有填无）" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <div class="layui-inline">
+        <label class="layui-form-label">*&nbsp;挂号科室</label>
+        <div class="layui-input-inline">
+            <input type="text" name="depart" lay-verify="required"  style="width: 360px" placeholder="选择就诊科室" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <div class="layui-inline">
+        <label class="layui-form-label">*&nbsp;病情描述</label>
+        <div class="layui-input-inline">
+            <textarea  name="description" lay-verify="required" style="width: 360px"  placeholder="请输入病情" autocomplete="off" class="layui-textarea"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <div class="layui-input-block">
+        <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">保存</button>
+        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+</div>
+
+</form>
+
+
+<script type="text/javascript" src="/layui/layui.js"></script>
+<script type="text/javascript" src="/js/visitmanager/newVisit.js"></script>
+</body>
+</html>

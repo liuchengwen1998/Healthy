@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.AchivestDao">
+    <select id="selectAll" resultType="java.lang.Integer">
+        select count(*) from lcw_file
+        where 1
+        <if test="search!= null">
+            AND (
+            name like CONCAT('%',#{search},'%')
+            or sex like CONCAT('%',#{search},'%')
+            or age like CONCAT('%',#{search},'%')
+            or identity like CONCAT('%',#{search},'%')
+            or phone like CONCAT('%',#{search},'%')
+            or medicalnumber like CONCAT('%',#{search},'%')
+            )
+        </if>;
+    </select>
+    <select id="selectByPage" resultType="com.example.demo.pojo.Achivest">
+        select * from lcw_file
+        where 1
+        <if test="search!= '' and search!=null ">
+            AND (
+            name like CONCAT('%',#{search},'%')
+            or sex like CONCAT('%',#{search},'%')
+            or age like CONCAT('%',#{search},'%')
+            or identity like CONCAT('%',#{search},'%')
+            or phone like CONCAT('%',#{search},'%')
+            or medicalnumber like CONCAT('%',#{search},'%')
+            )
+        </if>
+        ORDER BY id limit #{page}, #{limit};
+    </select>
+    <select id="selectById" resultType="com.example.demo.pojo.Achivest">
+        select * from lcw_file where id=#{id} limit 1;
+    </select>
+    <select id="selectByType" resultType="com.example.demo.pojo.Achivest">
+        select * from lcw_file where type=#{type} limit 1;
+    </select>
+    <select id="self_archives" resultType="com.example.demo.pojo.Achivest">
+        select * from lcw_file where identity=#{identity} limit 1;
+    </select>
+</mapper>

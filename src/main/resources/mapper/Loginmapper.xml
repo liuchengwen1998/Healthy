@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.LoginDao">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.pojo.User">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="realname" jdbcType="VARCHAR" property="realname" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="rolename" jdbcType="VARCHAR" property="rolename" />
+        <result column="roleid" jdbcType="INTEGER" property="roleid" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+    </resultMap>
+
+    <select id="getUserByName" resultType="com.example.demo.pojo.User">
+        select * from lcw_user where username = #{name}
+    </select>
+
+</mapper>

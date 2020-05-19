@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<title>用户列表</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_tnyc012u2rlwstt9.css" media="all" />
+	<link rel="stylesheet" href="../../css/news.css" media="all" />
+	<style type="text/css">
+		.layui-table-cell {
+			height: auto;
+			line-height: 28px;
+		}
+	</style>
+</head>
+<body class="childrenBody">
+	<blockquote class="layui-elem-quote news_search">
+		<div class="layui-inline">
+		    <div class="layui-input-inline">
+		    	<input type="text" value="" placeholder="请输入关键字" class="layui-input search_input" id="search_input">
+		    </div>
+		    <a class="layui-btn search_btn" data-type="reload" id="search_btn">查询</a>
+		</div>
+		<div class="layui-inline" style="float: right">
+			<a class="layui-btn search_btn" data-type="reload" onclick="adduser()">新建</a>
+			<a class="layui-btn search_btn" data-type="reload" id="export">导入</a>
+		</div>
+	</blockquote>
+	<div class="layui-form links_list">
+		<table id="test"  class="layui-hide" lay-filter="demo">
+
+		</table>
+	</div>
+
+	<form class="layui-form" action="" id="reset" lay-filter="example" style="display: none;width:450px;margin-left: 50px;margin-top: 5px" >
+		<input id="name" name="username" type="hidden">
+		<div class="layui-form-item" style="margin-top: 20px">
+			<input id="id" type="hidden" name="id"/>
+			<label class="layui-form-label">*&nbsp;新密码</label>
+			<div class="layui-input-block">
+				<input type="password" name="NewPassword" id="NewPassword" value="" lay-verify="required" autocomplete="off" placeholder="请输入新密码" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item" style="margin-top: 20px">
+			<input id="id" type="hidden" name="id"/>
+			<label class="layui-form-label">*&nbsp;确认密码</label>
+			<div class="layui-input-block">
+				<input type="password" name="ReNewPassword" id="ReNewPassword" value="" lay-verify="required|confirmPass" autocomplete="off" placeholder="确认密码" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item" style="margin-top: 20px">
+			<input id="id" type="hidden" name="id"/>
+			<label class="layui-form-label">*&nbsp;管理员密码</label>
+			<div class="layui-input-block">
+				<input type="password" name="rolepassword" id="rolepassword" value="" lay-verify="required" autocomplete="off" placeholder="请输入管理员密码" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit="" lay-filter="resetSubmit">提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+	</form>
+
+
+	<form class="layui-form" action="" id="edit" lay-filter="example" style="display: none;width:450px;margin-left: 50px;margin-top: 5px" >
+		<div class="layui-form-item" style="margin-top: 20px">
+			<input id="id" type="hidden" name="id"/>
+			<label class="layui-form-label">*&nbsp;用户名</label>
+			<div class="layui-input-block">
+				<input type="text" name="username" id="username" value="" lay-verify="required" autocomplete="off" placeholder="请输入用户名" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item" style="margin-top: 20px" id="passworddiv">
+
+			<label class="layui-form-label">*&nbsp;密码</label>
+			<div class="layui-input-block">
+				<input type="password" name="password" id="password" value="" autocomplete="off" placeholder="请输入密码" class="layui-input">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">*&nbsp;电话</label>
+			<div class="layui-input-block">
+				<input  name="phone" id="phone" value=""  placeholder="请输入电话号码" lay-verify="required|phone" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">*&nbsp;姓名</label>
+			<div class="layui-input-block">
+				<input  name="realname" placeholder="请输入姓名" id="realname" value="" lay-verify="required" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">*&nbsp;邮箱</label>
+			<div class="layui-input-block">
+				<input  name="email" placeholder="请输入邮箱" id="email" value="" lay-verify="required|email" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">*&nbsp;角色名</label>
+			<div class="layui-input-block">
+				<select name="roleid"  lay-verify="required" id="roleid">
+					<option value="">请选择角色名</option>
+					<option value="1">管理员</option>
+					<option value="2">医生</option>
+					<option value="3">操作员</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit="" lay-filter="userSubmit">保存</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+
+	</form>
+	<div id="page"></div>
+	<script type="text/javascript" src="/layui/layui.js"></script>
+	<script type="text/javascript" src="/js/links/linksList.js"></script>
+	<!-- 操作按钮 -->
+	<script type="text/html" id="barDemo">
+		{{#  if(d.status == 1){ }}
+		<a class="layui-btn layui-btn-xs" lay-event="status">启用</a>
+		{{#  }else{ }}
+		<a class="layui-btn layui-btn-xs" lay-event="status">禁用</a>
+		{{#  } }}
+		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+		<a class="layui-btn layui-btn-xs" lay-event="reset">重置密码</a>
+		<a class="layui-btn layui-btn-xs" lay-event="del">删除</a>
+
+	</script>
+	<script type="text/html" id="toolbar0">
+		<div class="layui-btn-container">
+			<button class="layui-btn layui-btn-sm" lay-event="reload">刷新</button>
+			<button class="layui-btn layui-btn-sm" lay-event="delAll">删除</button>
+		</div>
+	</script>
+
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.PeisDao">
+
+
+    <insert id="addPeis">
+        insert into lcw_peis
+        <set>
+            <if test="length != null">`length`=#{length},</if>
+            <if test="weight != null">`weight`=#{weight},</if>
+            <if test="left_eye != null">`left_eye`=#{left_eye},</if>
+            <if test="right_eye != null">`right_eye`=#{right_eye},</if>
+            <if test="heart != null">`heart`=#{heart},</if>
+            <if test="m_voice != null">`m_voice`=#{m_voice},</if>
+            <if test="tong_a != null">`tong_a`=#{tong_a},</if>
+            <if test="voice_a != null">`voice_a`=#{voice_a},</if>
+            <if test="voice_b != null">`voice_b`=#{voice_b},</if>
+            <if test="creator_id != null">`creator_id`=#{creator_id},</if>
+            <if test="creat_time != null">`creat_time`=#{creat_time},</if>
+            <if test="identity != null">`identity`=#{identity},</if>
+            <if test="result != null">`result`=#{result},</if>
+        </set>
+    </insert>
+    <select id="selectAll" resultType="java.lang.Integer">
+        select count(*) from lcw_peis
+        where 1
+        <if test="searchVal!= null">
+            AND (
+            name like CONCAT('%',#{searchVal},'%')
+            or identity like CONCAT('%',#{searchVal},'%')
+            )
+        </if>;
+
+    </select>
+    <select id="selectByPage" resultType="com.example.demo.pojo.PeisDTO">
+        select lcw_peis.*,lcw_file.name,lcw_file.phone,lcw_peis.result,lcw_user.realname as checkUser from lcw_peis
+        left join lcw_file on lcw_peis.identity = lcw_file.identity
+        left join lcw_user on lcw_user.id = lcw_peis.creator_id
+        where 1
+        <if test="searchVal!= '' and searchVal!=null ">
+            AND (
+            name like CONCAT('%',#{searchVal},'%')
+            or identity like CONCAT('%',#{searchVal},'%')
+            )
+        </if>
+        ORDER BY lcw_peis.id limit #{i}, #{limit};
+
+    </select>
+    <select id="selfPeis" resultType="com.example.demo.pojo.PeisDTO">
+        select lcw_peis.*,lcw_file.name,lcw_file.phone,lcw_peis.result,lcw_user.realname as checkUser from lcw_peis
+        left join lcw_file on lcw_peis.identity = lcw_file.identity
+        left join lcw_user on lcw_user.id = lcw_peis.creator_id
+        where 1=1 and lcw_peis.identity = #{identity}
+        ORDER BY lcw_peis.id limit #{i}, #{limit};
+    </select>
+    <select id="selectAllByIdentity" resultType="java.lang.Integer">
+        select count(*) from lcw_peis where identity=#{identity};
+    </select>
+</mapper>

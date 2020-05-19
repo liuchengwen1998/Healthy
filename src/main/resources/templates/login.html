@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>登录</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" th:href="@{/css/login.css}" media="all" />
+    <style>
+        .layui-tab-title li {
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            vertical-align: middle;
+            font-size: 18px;
+            transition: all .2s;
+            -webkit-transition: all .2s;
+            position: relative;
+            line-height: 35px;
+            min-width: 95px;
+            padding: 0 20px;
+            text-align: center;
+            cursor: pointer;
+            color: #009688;
+        }
+    </style>
+</head>
+<body>
+<video class="video-player" preload="auto" autoplay="autoplay" loop="loop" data-height="100%" data-width="100%" height="100%" width="100%">
+    <source th:src=@{/images/login.mp4} type="video/mp4">
+</video>
+<div class="video_mask"></div>
+<div class="login" id="login">
+    <h1>欢迎登录</h1>
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title">
+            <li class="layui-this" >密码登录</li>
+            <li >手机登录</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show" >
+                <form class="layui-form" action="" method="post" >
+                    <div class="layui-form-item">
+                        <input class="layui-input" name="username" placeholder="用户名" lay-verify="required" type="text" autocomplete="off">
+                    </div>
+                    <div class="layui-form-item">
+                        <input class="layui-input" name="password" placeholder="密码" lay-verify="required" type="password" autocomplete="off">
+                    </div>
+                    <div class="layui-form-item form_code">
+                        <input class="layui-input" id="code" style="vertical-align:middle" name="code" placeholder="验证码" lay-verify="required" type="text" autocomplete="off">
+                        <div class="code"><canvas  style="vertical-align:middle" id="canvas" width="110" height="38"></canvas></div>
+                    </div>
+                    <button class="layui-btn login_btn" lay-submit lay-filter="login" >登录</button>
+                    <a href="#" style="float: right;color: #b2b2b2;margin-top: 2px" onclick="editDiv(1)">忘记密码>>></a>
+                </form>
+            </div>
+            <div class="layui-tab-item">
+                <form class="layui-form" action="" method="post" >
+                <div class="layui-form-item">
+                    <input class="layui-input" name="phone" placeholder="手机号码" id="login_phone" lay-verify="required|phone" type="text" autocomplete="off">
+                </div>
+
+                <div class="layui-form-item form_code">
+                    <input class="layui-input" id="smscode_L" style="vertical-align:middle;" name="code" placeholder="输入验证码" lay-verify="required" type="text" autocomplete="off">
+
+                </div>
+                    <input type="button" class="layui-btn layui-btn-primary" value="获取验证码" id="sendBtn_L"  style="margin-bottom:15px;width: 260px;background-color: #b2b2b2;border-color:#b2b2b2 !important;" >
+
+                    <button class="layui-btn login_btn" lay-submit lay-filter="phone_login" style="margin-left: 0px;">登录</button>
+            </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="login" style="height: 320px;width: 280px;" id="editPwd">
+    <h1>修改密码</h1>
+    <hr style="height: 2px;margin-top: -10px;">
+    <form class="layui-form" action="" method="post">
+        <div class="layui-form-item">
+            <input class="layui-input" name="username" placeholder="用户名" lay-verify="required" type="text" autocomplete="off">
+        </div>
+        <div class="layui-form-item">
+            <input class="layui-input" name="password" placeholder="新密码" lay-verify="required" type="password" autocomplete="off">
+        </div>
+        <div class="layui-form-item">
+            <input class="layui-input" name="phone" placeholder="手机号码" id="phone" lay-verify="required|phone" type="text" autocomplete="off">
+        </div>
+        <div class="layui-form-item form_code">
+            <input class="layui-input" id="smscode" style="vertical-align:middle;width:50%" name="code" placeholder="输入验证码" lay-verify="required" type="text" autocomplete="off">
+            <div class="code"><input type="button" class="layui-btn layui-btn-primary" value="获取验证码" id="sendBtn" width="110" style="margin-left: 10px;margin-top: -1px;background-color: #009688;border-color:#009688 !important;" onclick="sendCode(this)">
+            </div>
+        </div>
+        <button class="layui-btn login_btn" lay-submit lay-filter="edit_pwd" >修改</button>
+        <a href="#" style="float: right;color: #b2b2b2;margin-top: 2px" onclick="editDiv(0)">去登录>>></a>
+    </form>
+</div>
+<script type="text/javascript" src="/layui/layui.js"></script>
+<script type="text/javascript" th:src="@{/js/login.js}"></script>
+
+
+</body>
+</html>

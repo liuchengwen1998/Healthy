@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.DrugDao">
+    <insert id="addDrug">
+        insert into lcw_medicine
+        <set>
+            <if test="drug.number != null">`number`=#{drug.number},</if>
+            <if test="drug.name != null">`name`=#{drug.name},</if>
+            <if test="drug.count != null">`count`=#{drug.count},</if>
+            <if test="drug.price != null">`price`=#{drug.price},</if>
+            <if test="drug.type != null">`type`=#{drug.type},</if>
+            <if test="drug.description != null">`description`=#{drug.description},</if>
+        </set>
+    </insert>
+    <update id="editDrug">
+        update lcw_medicine
+        <set>
+            <if test="drug.name != null">`name`=#{drug.name},</if>
+            <if test="drug.count != null">`count`=#{drug.count},</if>
+            <if test="drug.price != null">`price`=#{drug.price},</if>
+            <if test="drug.type != null">`type`=#{drug.type},</if>
+            <if test="drug.description != null">`description`=#{drug.description},</if>
+        </set>
+        where number = #{drug.number};
+    </update>
+    <delete id="delById">
+        DELETE FROM lcw_medicine
+        where id!=1 and id IN
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="selectAll" resultType="java.lang.Integer">
+        select count(*) from lcw_medicine
+        where 1
+        <if test="searchVal!= null">
+            AND (
+            name like CONCAT('%',#{searchVal},'%')
+            or number like CONCAT('%',#{searchVal},'%')
+            )
+        </if>;
+
+
+    </select>
+    <select id="selectByPage" resultType="com.example.demo.pojo.Drug">
+        select * from lcw_medicine
+        where 1
+        <if test="searchVal!= '' and searchVal!=null ">
+            AND (
+            name like CONCAT('%',#{searchVal},'%')
+            or number like CONCAT('%',#{searchVal},'%')
+            )
+        </if>
+        ORDER BY id limit #{i}, #{limit};
+
+    </select>
+    <select id="selectedByPhone" resultType="com.example.demo.pojo.User">
+        select * from lcw_medicine where phone = #{phone} limit 1;
+    </select>
+    <select id="drug_counts" resultType="com.example.demo.pojo.Drug">
+        select * from lcw_medicine where 1=1;
+    </select>
+</mapper>

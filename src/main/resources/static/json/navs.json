@@ -1,0 +1,118 @@
+[{
+	"id": 1,
+	"title" : "首页",
+	"icon" : "icon-computer",
+	"href" : "page/main.html",
+	"spread" : false
+},{
+	"id": 2,
+	"title" : "用户管理",
+	"icon" : "icon-text",
+	"href" : "",
+	"spread" : false,
+	"children" : [
+		{
+			"id": 3,
+			"title" : "用户列表",
+			"icon" : "&#xe61c;",
+			"href" : "page/links/linksList",
+			"spread" : false
+		},
+		{
+			"id": 4,
+			"title" : "个人建档",
+			"icon" : "&#xe609;",
+			"href" : "page/links/linksAdd",
+			"spread" : false
+		}
+	]
+},{
+	"id": 5,
+	"title" : "档案管理",
+	"icon" : "&#xe64c;",
+	"spread" : false,
+	"children" : [
+		{
+			"id": 6,
+			"title" : "档案列表",
+			"icon" : "&#xe61c;",
+			"href" : "page/archives/Archives",
+			"spread" : false
+		},
+		{
+			"id": 7,
+			"title" : "就诊列表",
+			"icon" : "&#xe609;",
+			"href" : "page/archives/visitList",
+			"spread" : false
+		},
+		{
+			"id": 8,
+			"title" : "体检列表",
+			"icon" : "&#xe609;",
+			"href" : "page/archives/peisAllList",
+			"spread" : false
+		}
+	]
+},{
+	"id": 9,
+	"title" : "就诊管理",
+	"icon" : "&#xe631;",
+	"spread" : false,
+	"children" : [
+		{
+			"id": 10,
+			"title" : "查询信息",
+			"icon" : "&#xe61c;",
+			"href" : "page/visitmanager/search",
+			"spread" : false
+		},
+		{
+			"id": 11,
+			"title" : "就诊操作",
+			"icon" : "&#xe609;",
+			"href" : "page/visitmanager/addoperation",
+			"spread" : false
+		},{
+			"id": 12,
+			"title" : "诊断记录",
+			"icon" : "&#xe609;",
+			"href" : "page/visitmanager/visitRecord",
+			"spread" : false
+		},
+		{
+			"id": 13,
+			"title" : "体检信息",
+			"icon" : "&#xe609;",
+			"href" : "page/visitmanager/peis",
+			"spread" : false
+		},
+		{
+			"id": 14,
+			"title" : "体检记录",
+			"icon" : "&#xe609;",
+			"href" : "page/visitmanager/peisList",
+			"spread" : false
+		}
+	]
+},{
+	"id": 15,
+	"title" : "药品管理",
+	"icon" : "&#xe632;",
+	"href" : "page/drugmanager/drugList",
+	"spread" : false
+},{
+	"id": 16,
+	"title" : "个人档案",
+	"icon" : "&#xe630;",
+	"href" : "page/user/selfArchives",
+	"spread" : false
+}
+,{
+
+	"id"	: 17,
+	"title" : "个人中心",
+	"icon" : "&#xe630;",
+	"href" : "page/user/userInfo",
+	"spread" : false
+}]

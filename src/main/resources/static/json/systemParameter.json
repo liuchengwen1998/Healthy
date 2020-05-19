@@ -1,0 +1,14 @@
+{
+    "cmsName": "健康档案管理系统",
+    "version": "v1.0.1",
+    "author": "刘成文",
+    "homePage": "page/index.html",
+    "server": "MacOs",
+    "dataBase": "5.7",
+    "maxUpload": "2M",
+    "userRights": "总管理员",
+    "description": "用于医疗卫生的一款档案管理系统",
+    "powerby": "copyright @2020 刘成文",
+    "record": "京ICP备14040xxx号-1",
+    "keywords": "layui，刘成文，cms，模版"
+}

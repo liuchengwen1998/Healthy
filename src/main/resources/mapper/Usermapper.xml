@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.UserDao">
+    <insert id="addUser">
+        insert into lcw_user
+        <set>
+            <if test="user.username != null">`username`=#{user.username},</if>
+            <if test="user.password != null">`password`=#{user.password},</if>
+            <if test="user.phone != null">`phone`=#{user.phone},</if>
+            <if test="user.realname != null">`realname`=#{user.realname},</if>
+            <if test="user.email != null">`email`=#{user.email},</if>
+            <if test="user.rolename != null">`rolename`=#{user.rolename},</if>
+            <if test="user.status != null">`status`=#{user.status},</if>
+            <if test="user.roleid != null">`roleid`=#{user.roleid},</if>
+            <if test="user.fail_count != null">`fail_count`=#{user.fail_count},</if>
+        </set>
+    </insert>
+
+    <update id="editFail_count">
+        update lcw_user
+        <set>
+            fail_count=#{i}
+        </set>
+        where username = #{username};
+    </update>
+    <update id="updateStatus">
+        update lcw_user
+        <set>
+            <if test="i!=null">status=#{i}</if>
+        </set>
+        where id = #{id};
+    </update>
+    <update id="updateUser" >
+        update lcw_user
+        <set>
+            <if test="user.realname!=null">realname=#{user.realname},</if>
+            <if test="user.phone!=null">phone=#{user.phone},</if>
+            <if test="user.email!=null">email=#{user.email},</if>
+            <if test="user.sex!=null">sex=#{user.sex},</if>
+            <if test="user.province!=null">province=#{user.province},</if>
+            <if test="user.city!=null">city=#{user.city},</if>
+            <if test="user.area!=null">area=#{user.area},</if>
+            <if test="user.address!=null">address=#{user.address}</if>
+        </set>
+        where username = #{user.username};
+    </update>
+    <delete id="delById">
+        DELETE FROM lcw_user
+        where id!=1 and id IN
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+    <select id="selectAll" resultType="java.lang.Integer">
+        select count(*) from lcw_user
+        where 1
+        <if test="search!= null">
+            AND (
+            username like CONCAT('%',#{search},'%')
+            or realname like CONCAT('%',#{search},'%')
+            or rolename like CONCAT('%',#{search},'%')
+            or phone like CONCAT('%',#{search},'%')
+            or email like CONCAT('%',#{search},'%')
+            )
+        </if>;
+    </select>
+    <select id="selectByPage" resultType="com.example.demo.pojo.User">
+        select * from lcw_user
+        where 1
+        <if test="search!= '' and search!=null ">
+            AND (
+            username like CONCAT('%',#{search},'%')
+            or realname like CONCAT('%',#{search},'%')
+            or rolename like CONCAT('%',#{search},'%')
+            or phone like CONCAT('%',#{search},'%')
+            or email like CONCAT('%',#{search},'%')
+            )
+        </if>
+        ORDER BY id limit #{page}, #{limit};
+    </select>
+    <select id="selectedByPhone" resultType="com.example.demo.pojo.User">
+        select * from lcw_user where phone = #{phone} limit 1;
+    </select>
+    <select id="checkUsername" resultType="com.example.demo.pojo.User">
+        select * from lcw_user where username=#{username} limit 1;
+    </select>
+    <select id="selectMenus" resultType="java.lang.Integer">
+        select menu_id from lcw_role_menu where role_id = #{role};
+    </select>
+    <select id="selectRoleMenu" resultType="com.example.demo.entity.LcwMenu">
+        select * from lcw_menu where id in
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </select>
+</mapper>
